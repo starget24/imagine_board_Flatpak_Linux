@@ -4,6 +4,9 @@
 
 Imagine Board is a Krita plugin to browse images and create image boards.
 
+This is a fork aiming to make it work with the flatpak version of Krita all the credit for the plugin goes to EyeOdin(paypal.me badge in the bottom).
+Please support him for this amazing plugin.
+
 
 ## Features
 * Modes: Preview, Grid and Reference
