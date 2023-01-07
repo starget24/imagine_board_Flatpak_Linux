@@ -1212,7 +1212,7 @@ class ImagineBoard_Docker(DockWidget):
         width = int(screen_zero.width())
         height = int(screen_zero.height())
         size = 500
-        self.dialog.setGeometry( width*0.5-size*0.5, height*0.5-size*0.5, size, size )
+        self.dialog.setGeometry( int(width*0.5-size*0.5), int(height*0.5-size*0.5), int(size), int(size) )
     def Menu_Manual(self):
         url = "https://github.com/EyeOdin/imagine_board/wiki"
         webbrowser.open_new(url)
@@ -1752,7 +1752,7 @@ class ImagineBoard_Docker(DockWidget):
             drag = QDrag(self)
             drag.setMimeData(mimedata)
             drag.setPixmap(qpixmap)
-            drag.setHotSpot(QPoint(qimage_scaled.width() / 2 , qimage_scaled.height() / 2))
+            drag.setHotSpot(QPoint(int(qimage_scaled.width() / 2) , int(qimage_scaled.height() / 2)))
             drag.exec_(Qt.CopyAction)
         else:
             # QImage
@@ -1786,7 +1786,7 @@ class ImagineBoard_Docker(DockWidget):
             drag = QDrag(self)
             drag.setMimeData(mimedata)
             drag.setPixmap(qpixmap)
-            drag.setHotSpot(QPoint(qimage_scaled.width() / 2 , qimage_scaled.height() / 2))
+            drag.setHotSpot(QPoint(int(qimage_scaled.width() / 2) , int(qimage_scaled.height() / 2)))
             drag.exec_(Qt.CopyAction)
 
     # File
@@ -2208,7 +2208,7 @@ class ImagineBoard_Docker(DockWidget):
             width = text_rect.width()
             height = text_rect.height()
 
-            qpixmap = QPixmap(width, height)
+            qpixmap = QPixmap(int(width), int(height))
         point_ratio = height / point_size
         w2 = width * 0.5
         h2 = height * 0.5

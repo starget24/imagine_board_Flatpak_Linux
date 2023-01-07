@@ -835,7 +835,7 @@ class ImagineBoard_Preview(QWidget):
     def Color_Apply(self, event):
         # Geometry
         tl = QPoint(0, 0)
-        br = QPoint(self.width(), self.height() )
+        br = QPoint(int(self.width()), int(self.height()) )
         pixmap = self.grab(QRect(tl, br))
         image = pixmap.toImage()
         ex = event.x()
@@ -1100,24 +1100,24 @@ class ImagineBoard_Preview(QWidget):
                 painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
                 tri = 15
                 poly1 = QPolygon([
-                    QPoint((self.image_width * self.clip_p1_per[0]), (self.image_height * self.clip_p1_per[1])),
-                    QPoint((self.image_width * self.clip_p1_per[0]) + tri, (self.image_height * self.clip_p1_per[1])),
-                    QPoint((self.image_width * self.clip_p1_per[0]), (self.image_height * self.clip_p1_per[1]) + tri),
+                    QPoint((int(self.image_width * self.clip_p1_per[0])), (int(self.image_height * self.clip_p1_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p1_per[0]) + tri), int((self.image_height * self.clip_p1_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p1_per[0])), int((self.image_height * self.clip_p1_per[1]) + tri)),
                     ])
                 poly2 = QPolygon([
-                    QPoint((self.image_width * self.clip_p2_per[0]), (self.image_height * self.clip_p2_per[1])),
-                    QPoint((self.image_width * self.clip_p2_per[0]), (self.image_height * self.clip_p2_per[1]) + tri),
-                    QPoint((self.image_width * self.clip_p2_per[0]) - tri, (self.image_height * self.clip_p2_per[1])),
+                    QPoint((int(self.image_width * self.clip_p2_per[0])), int((self.image_height * self.clip_p2_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p2_per[0])), (int(self.image_height * self.clip_p2_per[1]) + tri)),
+                    QPoint((int(self.image_width * self.clip_p2_per[0]) - tri), int((self.image_height * self.clip_p2_per[1]))),
                     ])
                 poly3 = QPolygon([
-                    QPoint((self.image_width * self.clip_p3_per[0]), (self.image_height * self.clip_p3_per[1])),
-                    QPoint((self.image_width * self.clip_p3_per[0]) - tri, (self.image_height * self.clip_p3_per[1])),
-                    QPoint((self.image_width * self.clip_p3_per[0]), (self.image_height * self.clip_p3_per[1]) - tri),
+                    QPoint((int(self.image_width * self.clip_p3_per[0])), (int(self.image_height * self.clip_p3_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p3_per[0]) - tri), int((self.image_height * self.clip_p3_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p3_per[0])), int((self.image_height * self.clip_p3_per[1]) - tri)),
                     ])
                 poly4 = QPolygon([
-                    QPoint((self.image_width * self.clip_p4_per[0]), (self.image_height * self.clip_p4_per[1])),
-                    QPoint((self.image_width * self.clip_p4_per[0]), (self.image_height * self.clip_p4_per[1]) - tri),
-                    QPoint((self.image_width * self.clip_p4_per[0]) + tri, (self.image_height * self.clip_p4_per[1])),
+                    QPoint((int(self.image_width * self.clip_p4_per[0])), int((self.image_height * self.clip_p4_per[1]))),
+                    QPoint((int(self.image_width * self.clip_p4_per[0])), int((self.image_height * self.clip_p4_per[1]) - tri)),
+                    QPoint((int(self.image_width * self.clip_p4_per[0]) + tri), int((self.image_height * self.clip_p4_per[1]))),
                     ])
                 painter.drawPolygon(poly1)
                 painter.drawPolygon(poly2)
@@ -1132,15 +1132,15 @@ class ImagineBoard_Preview(QWidget):
             painter.setBrush(QBrush(QColor(self.color_1)))
             if self.origin_y < (self.widget_height * 0.5):
                 arrow = QPolygon([
-                    QPoint(self.widget_width*0.50, self.widget_height*0.05),
-                    QPoint(self.widget_width*0.45, self.widget_height*0.10),
-                    QPoint(self.widget_width*0.55, self.widget_height*0.10)
+                    QPoint(int(self.widget_width*0.50), int(self.widget_height*0.05)),
+                    QPoint(int(self.widget_width*0.45), int(self.widget_height*0.10)),
+                    QPoint(int(self.widget_width*0.55), int(self.widget_height*0.10))
                     ])
             elif self.origin_y > (self.widget_height * 0.5):
                 arrow = QPolygon([
-                    QPoint(self.widget_width*0.50, self.widget_height*0.95),
-                    QPoint(self.widget_width*0.45, self.widget_height*0.90),
-                    QPoint(self.widget_width*0.55, self.widget_height*0.90)
+                    QPoint(int(self.widget_width*0.50), int(self.widget_height*0.95)),
+                    QPoint(int(self.widget_width*0.45), int(self.widget_height*0.90)),
+                    QPoint(int(self.widget_width*0.55), int(self.widget_height*0.90))
                     ])
             painter.drawPolygon(arrow)
 
@@ -1157,16 +1157,16 @@ class ImagineBoard_Preview(QWidget):
                 w2 = self.widget_width * 0.5
                 h2 = self.widget_height * 0.5
                 poly_tri = QPolygon([
-                    QPoint(w2 - (0.3*side), h2 - (0.2*side)),
-                    QPoint(w2 + (0.3*side), h2 - (0.2*side)),
-                    QPoint(w2, h2 + (0.2*side)),
+                    QPoint(int(w2 - (0.3*side)), int(h2 - (0.2*side))),
+                    QPoint(int(w2 + (0.3*side)), int(h2 - (0.2*side))),
+                    QPoint(int(w2), int(h2 + (0.2*side))),
                     ])
                 painter.drawPolygon(poly_tri)
 
         # Color Picker
         if (self.pick_color == True and self.origin_x != 0 and self.origin_y != 0):
             painter.setPen(QtCore.Qt.NoPen)
-            painter.setBrush(QBrush(QColor(self.red*self.range, self.green*self.range, self.blue*self.range)))
+            painter.setBrush(QBrush(QColor(int(self.red*self.range), int(self.green*self.range), int(self.blue*self.range))))
             painter.drawRect(0,0,50,50)
     def Image_Calculations(self):
         # Calculations for Image
@@ -1555,12 +1555,12 @@ class ImagineBoard_Grid(QWidget):
                         painter.setBrush(QBrush(QColor(self.color_1)))
                         painter.drawRect(0,0,self.widget_width,self.widget_height)
                     # Pixmap
-                    render = qpixmap.scaled( self.tn_x+1, self.tn_y+1, self.display_ratio, self.tn_smooth_scale )
+                    render = qpixmap.scaled( int(self.tn_x+1), int(self.tn_y+1), int(self.display_ratio), int(self.tn_smooth_scale) )
                     render_width = render.width()
                     render_height = render.height()
                     offset_x = (self.tn_x - render_width) * 0.5
                     offset_y = (self.tn_y - render_height) * 0.5
-                    painter.drawPixmap(px + offset_x, py + offset_y, render)
+                    painter.drawPixmap(int(px + offset_x), int(py + offset_y), render)
                 else:
                     painter.setPen(QtCore.Qt.NoPen)
                     painter.setBrush(QBrush(QColor(self.color_1)))
@@ -1582,15 +1582,15 @@ class ImagineBoard_Grid(QWidget):
             painter.setBrush(QBrush(QColor(self.color_1)))
             if self.origin_y < (self.widget_height * 0.5):
                 arrow = QPolygon([
-                    QPoint(self.widget_width*0.50, self.widget_height*0.05),
-                    QPoint(self.widget_width*0.45, self.widget_height*0.10),
-                    QPoint(self.widget_width*0.55, self.widget_height*0.10)
+                    QPoint(int(self.widget_width*0.50), int(self.widget_height*0.05)),
+                    QPoint(int(self.widget_width*0.45), int(self.widget_height*0.10)),
+                    QPoint(int(self.widget_width*0.55), int(self.widget_height*0.10))
                     ])
             elif self.origin_y > (self.widget_height * 0.5):
                 arrow = QPolygon([
-                    QPoint(self.widget_width*0.50, self.widget_height*0.95),
-                    QPoint(self.widget_width*0.45, self.widget_height*0.90),
-                    QPoint(self.widget_width*0.55, self.widget_height*0.90)
+                    QPoint(int(self.widget_width*0.50), int(self.widget_height*0.95)),
+                    QPoint(int(self.widget_width*0.45), int(self.widget_height*0.90)),
+                    QPoint(int(self.widget_width*0.55), int(self.widget_height*0.90))
                     ])
             painter.drawPolygon(arrow)
 
@@ -1607,9 +1607,9 @@ class ImagineBoard_Grid(QWidget):
                 w2 = self.widget_width * 0.5
                 h2 = self.widget_height * 0.5
                 poly_tri = QPolygon([
-                    QPoint(w2 - (0.3*side), h2 - (0.2*side)),
-                    QPoint(w2 + (0.3*side), h2 - (0.2*side)),
-                    QPoint(w2, h2 + (0.2*side)),
+                    QPoint(int(w2 - (0.3*side)), int(h2 - (0.2*side))),
+                    QPoint(int(w2 + (0.3*side)), int(h2 - (0.2*side))),
+                    QPoint(int(w2), int(h2 + (0.2*side))),
                     ])
                 painter.drawPolygon(poly_tri)
 
@@ -3208,7 +3208,7 @@ class ImagineBoard_Reference(QWidget):
                 bb = self.pin_ref[i]["bb"]
                 bw = abs(br - bl)
                 bh = abs(bb - bt)
-                painter.drawRect(bl, bt, bw, bh)
+                painter.drawRect(int(bl), int(bt), int(bw), int(bh))
                 optimized.append(self.pin_ref[i])
         if len(optimized) > 0:
             # Optimized Square
@@ -3219,14 +3219,14 @@ class ImagineBoard_Reference(QWidget):
             max_y = box["max_y"]
             opt_width = abs(max_x-min_x)
             opt_height = abs(max_y-min_y)
-            painter.drawRect(min_x, min_y, opt_width, opt_height)
+            painter.drawRect(int(min_x), int(min_y), int(opt_width), int(opt_height))
             # Lost Line
             if (min_x > self.widget_width or max_x < 0 or min_y > self.widget_height or max_y < 0):
                 painter.setPen(QPen(self.color_1, 2, Qt.SolidLine))
                 painter.setBrush(QtCore.Qt.NoBrush)
                 opt_w2 = min_x + (opt_width * 0.5)
                 opt_h2 = min_y + (opt_height * 0.5)
-                painter.drawLine(self.w2, self.h2, opt_w2, opt_h2)
+                painter.drawLine(int(self.w2), int(self.h2), int(opt_w2), int(opt_h2))
                 painter.drawEllipse( QRectF( self.w2-2, self.h2-2, 4, 4 ) )
 
         # No References
@@ -3296,19 +3296,19 @@ class ImagineBoard_Reference(QWidget):
                     if qpixmap.isNull() == False: # Render Image
                         # Pixmap
                         painter.setPen(QtCore.Qt.NoPen)
-                        painter.drawPixmap(dx, dy, qpixmap.scaled(dw, dh, Qt.IgnoreAspectRatio, Qt.SmoothTransformation))
+                        painter.drawPixmap(int(dx), int(dy), qpixmap.scaled(int(dw), int(dh), Qt.IgnoreAspectRatio, Qt.SmoothTransformation))
                         # Masks
                         painter.setClipRect(QRectF(0,0, self.widget_width,self.widget_height), Qt.ReplaceClip)
                     else: # No Image to Render
                         # Highlight
                         painter.setPen(QtCore.Qt.NoPen)
                         painter.setBrush(QBrush(QColor(self.color_2)))
-                        painter.drawRect(bl, bt, br-bl, bb-bt)
+                        painter.drawRect(int(bl), int(bt), int(br-bl), int(bb-bt))
                         # Masks
                         painter.setClipRect(QRectF(0,0, self.widget_width,self.widget_height), Qt.ReplaceClip)
                 else: # Draw Text
                     # Bounding Box
-                    box = QRect(bl, bt, br-bl, bb-bt)
+                    box = QRect(int(bl), int(bt), int(br-bl), int(bb-bt))
                     # Highlight
                     painter.setPen(QtCore.Qt.NoPen)
                     painter.setBrush(QBrush(QColor(color)))
@@ -3335,7 +3335,7 @@ class ImagineBoard_Reference(QWidget):
                 bb = self.pin_ref[i]["bb"]
                 bw = abs(br - bl)
                 bh = abs(bb - bt)
-                painter.drawRect(bl, bt, bw, bh)
+                painter.drawRect(int(bl), int(bt), int(bw), int(bh))
                 selection.append(self.pin_ref[i])
         # Selection Square
         painter.setPen(QPen(self.color_1, 1, Qt.SolidLine))
@@ -3346,7 +3346,7 @@ class ImagineBoard_Reference(QWidget):
             min_y = box["min_y"]
             max_x = box["max_x"]
             max_y = box["max_y"]
-            painter.drawRect(min_x, min_y, max_x-min_x, max_y-min_y)
+            painter.drawRect(int(min_x), int(min_y), int(max_x-min_x), int(max_y-min_y))
 
         # Active Nodes
         index = None
@@ -3382,7 +3382,7 @@ class ImagineBoard_Reference(QWidget):
             # Bounding Box
             painter.setPen(QPen(self.color_2, 1, Qt.SolidLine))
             painter.setBrush(QtCore.Qt.NoBrush)
-            painter.drawRect(bl, bt, ww, hh)
+            painter.drawRect(int(bl), int(bt), int(ww), int(hh))
 
             # Triangle
             minimal_triangle = 20
@@ -3393,28 +3393,28 @@ class ImagineBoard_Reference(QWidget):
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polyt1 = QPolygon([QPoint(bl, bt), QPoint(bl + tri, bt), QPoint(bl, bt + tri),])
+                polyt1 = QPolygon([QPoint(int(bl), int(bt)), QPoint(int(bl + tri), int(bt)), QPoint(int(bl), int(bt + tri)),])
                 painter.drawPolygon(polyt1)
                 # scale 3
                 if self.pin_node == 3:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polyt3 = QPolygon([QPoint(br, bt), QPoint(br, bt + tri), QPoint(br - tri, bt),])
+                polyt3 = QPolygon([QPoint(int(br), int(bt)), QPoint(int(br), int(bt + tri)), QPoint(int(br - tri), int(bt)),])
                 painter.drawPolygon(polyt3)
                 # Scale 7
                 if self.pin_node == 7:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polyt7 = QPolygon([QPoint(bl, bb), QPoint(bl, bb - tri), QPoint(bl + tri, bb),])
+                polyt7 = QPolygon([QPoint(int(bl), int(bb)), QPoint(int(bl), int(bb - tri)), QPoint(int(bl + tri), int(bb)),])
                 painter.drawPolygon(polyt7)
                 # Scale 9
                 if self.pin_node == 9:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polyt9 = QPolygon([QPoint(br, bb), QPoint(br - tri, bb), QPoint(br, bb - tri),])
+                polyt9 = QPolygon([QPoint(int(br), int(bb)), QPoint(int(br - tri), int(bb)), QPoint(int(br), int(bb - tri)),])
                 painter.drawPolygon(polyt9)
 
             # Squares
@@ -3426,28 +3426,28 @@ class ImagineBoard_Reference(QWidget):
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polys2 = QPolygon([QPoint(bl+w2-sq, bt), QPoint(bl+w2-sq, bt+sq), QPoint(bl+w2+sq, bt+sq), QPoint(bl+w2+sq, bt),])
+                polys2 = QPolygon([QPoint(int(bl+w2-sq), int(bt)), QPoint(int(bl+w2-sq), int(bt+sq)), QPoint(int(bl+w2+sq), int(bt+sq)), QPoint(int(bl+w2+sq), int(bt)),])
                 painter.drawPolygon(polys2)
                 # Clip 4
                 if self.pin_node == 4:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polys2 = QPolygon([QPoint(bl, bt+h2-sq), QPoint(bl+sq, bt+h2-sq), QPoint(bl+sq, bt+h2+sq), QPoint(bl, bt+h2+sq),])
+                polys2 = QPolygon([QPoint(int(bl), int(bt+h2-sq)), QPoint(int(bl+sq), int(bt+h2-sq)), QPoint(int(bl+sq), int(bt+h2+sq)), QPoint(int(bl), int(bt+h2+sq)),])
                 painter.drawPolygon(polys2)
                 # Clip 6
                 if self.pin_node == 6:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polys2 = QPolygon([QPoint(br, bt+h2-sq), QPoint(br-sq, bt+h2-sq), QPoint(br-sq, bt+h2+sq), QPoint(br, bt+h2+sq),])
+                polys2 = QPolygon([QPoint(int(br), int(bt+h2-sq)), QPoint(int(br-sq), int(bt+h2-sq)), QPoint(int(br-sq), int(bt+h2+sq)), QPoint(int(br), int(bt+h2+sq)),])
                 painter.drawPolygon(polys2)
                 # Clip 8
                 if self.pin_node == 8:
                     painter.setBrush(QBrush(self.color_blue, Qt.SolidPattern))
                 else:
                     painter.setBrush(QBrush(self.color_1, Qt.SolidPattern))
-                polys2 = QPolygon([QPoint(bl+w2-sq, bb), QPoint(bl+w2-sq, bb-sq), QPoint(bl+w2+sq, bb-sq), QPoint(bl+w2+sq, bb),])
+                polys2 = QPolygon([QPoint(int(bl+w2-sq), int(bb)), QPoint(int(bl+w2-sq), int(bb-sq)), QPoint(int(bl+w2+sq), int(bb-sq)), QPoint(int(bl+w2+sq), int(bb)),])
                 painter.drawPolygon(polys2)
 
             # Circle
@@ -3461,8 +3461,8 @@ class ImagineBoard_Reference(QWidget):
                     painter.setPen(QPen(self.color_1, 1, Qt.SolidLine))
                     cir_x, cir_y = Trig_2D_Points_Rotate(ox, oy, ss, Limit_Looper(ro+90, 360) )
                     neu_x, neu_y = Trig_2D_Points_Rotate(ox, oy, ss, Limit_Looper(90, 360) )
-                    painter.drawLine(ox, oy, cir_x, cir_y)
-                    painter.drawLine(ox, oy, neu_x, neu_y)
+                    painter.drawLine(int(ox), int(oy), int(cir_x), int(cir_y))
+                    painter.drawLine(int(ox), int(oy), int(neu_x), int(neu_y))
                     # Circle
                     painter.setPen(QPen(self.color_2, 1, Qt.SolidLine))
                     painter.drawEllipse( QRectF( ox-cir, oy-cir, 2*cir, 2*cir ) )
@@ -3481,7 +3481,7 @@ class ImagineBoard_Reference(QWidget):
                 qpixmap_scaled = qpixmap.scaled(ww, wh, Qt.KeepAspectRatio, Qt.SmoothTransformation)
                 pw = qpixmap_scaled.width()
                 ph = qpixmap_scaled.height()
-                painter.drawPixmap((ww/2)-(pw/2), (wh/2)-(ph/2), qpixmap_scaled)
+                painter.drawPixmap(int((ww/2)-(pw/2)), int((wh/2)-(ph/2)), qpixmap_scaled)
 
         # Cursor Selection Square
         check = (self.sel_l == 0 and self.sel_r == 0 and self.sel_t == 0 and self.sel_b == 0)
@@ -3507,9 +3507,9 @@ class ImagineBoard_Reference(QWidget):
             w2 = self.widget_width * 0.5
             h2 = self.widget_height * 0.5
             poly_tri = QPolygon([
-                QPoint(w2 - (0.3*side), h2 - (0.2*side)),
-                QPoint(w2 + (0.3*side), h2 - (0.2*side)),
-                QPoint(w2, h2 + (0.2*side)),
+                QPoint(int(w2 - (0.3*side)), int(h2 - (0.2*side))),
+                QPoint(int(w2 + (0.3*side)), int(h2 - (0.2*side))),
+                QPoint(int(w2), int(h2 + (0.2*side))),
                 ])
             painter.drawPolygon(poly_tri)
 
